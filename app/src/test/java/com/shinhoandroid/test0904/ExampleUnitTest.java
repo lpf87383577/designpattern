@@ -33,9 +33,9 @@ public class ExampleUnitTest {
 
 //        BuilderMethod builderMethod = new BuilderMethod();
 //        builderMethod.mClient.test();
-//       new ProxyMethod().test();
+       new DynamicProxyMethod().test();
 
-        new ResponsibilityMethod().test();
+//        new ResponsibilityMethod().test();
 
     }
 
