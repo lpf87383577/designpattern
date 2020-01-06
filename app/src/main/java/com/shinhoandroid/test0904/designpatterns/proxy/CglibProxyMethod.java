@@ -21,7 +21,6 @@ import java.lang.reflect.Method;
  * CGLib采用了非常底层的字节码技术，其原理是通过字节码技术为一个类创建子类，并在子类中采用方法拦截的技术拦截
  * 所有父类方法的调用，顺势织入横切逻辑。但因为采用的是继承，所以不能对final修饰的类进行代理。
  * JDK动态代理与CGLib动态代理均是实现Spring AOP的基础。
- * @date on 2019/9/6 10:24
  */
 public class CglibProxyMethod {
 
@@ -47,6 +46,8 @@ public class CglibProxyMethod {
     }
     public void test2(Context context){
 
+
+
         //因为需要Context,所以放在Activity中测试
         Enhancer enhancer = new Enhancer(context);
         enhancer.setSuperclass(BuyHouseImpl.class);
@@ -54,6 +55,8 @@ public class CglibProxyMethod {
         enhancer.setCallbacks(new MethodInterceptor[]{NoOp.INSTANCE,new MethodInterceptor() {
             @Override
             public Object intercept(Object object, Object[] args, MethodProxy methodProxy) throws Exception {
+
+                //object继承被代理类，不同于动态代理，动态代理继承Proxy，实现被代理的接口,
                 L.e("买房前准备");
                 Object obj = methodProxy.invokeSuper(object, args);
                 L.e("买房后装修");

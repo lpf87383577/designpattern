@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         enhancer.setCallback(new MethodInterceptor() {
             @Override
             public Object intercept(Object object, Object[] args, MethodProxy methodProxy) throws Exception {
+
                 L.e("买房前准备");
                 Object obj = methodProxy.invokeSuper(object, args);
                 L.e("买房后装修");
